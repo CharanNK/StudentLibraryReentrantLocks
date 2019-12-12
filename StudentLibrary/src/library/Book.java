@@ -13,8 +13,8 @@ public class Book {
 		lock = new ReentrantLock();
 	}
 	
-	public void run(Student student) throws InterruptedException{
-		lock.tryLock(10,TimeUnit.MILLISECONDS);
+	public void read(Student student) throws InterruptedException{
+		lock.lock(); //we do not use lock.tryLock() because it acquires the lock only if it is available at the time of invocation
 		System.out.println(student+" started reading "+this);
 		Thread.sleep(2000);
 		lock.unlock();
